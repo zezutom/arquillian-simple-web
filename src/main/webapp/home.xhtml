@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Home</title>
+<style type="text/css">
+.box {
+	margin: 20px;
+	width: 100px;
+	height: 40px;
+	border: solid 2px;
+	text-align: center;
+}
+
+.label {
+	font-weight: bold;
+	color: white;
+	padding-top: 10px;
+}
+</style>
+
+</head>
+<body>
+	<h:messages />
+	<h:panelGroup rendered="#{loginController.loggedIn}">
+		<div style="background-color: #{loginController.color};" class="box">
+			<div class="label">Hi #{loginController.username}</div>
+		</div>
+		
+		<h:form id="colorForm">
+			<h:commandButton id="red" value="Red" 
+				action="#{loginController.red}" />
+			<h:commandButton id="green" value="Green"
+				action="#{loginController.green}" />
+			<h:commandButton id="blue" value="Blue"
+				action="#{loginController.blue}" />
+		</h:form>
+	</h:panelGroup>
+</body>
+</html>
