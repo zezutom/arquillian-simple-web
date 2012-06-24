@@ -3,7 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-<head>
+<h:head>
 <title>Home</title>
 <style type="text/css">
 .box {
@@ -21,21 +21,34 @@
 }
 </style>
 
-</head>
+</h:head>
 <body>
+	<div>
+		Page loaded at <span id="pageLoadTime">#{login.currentTime}</span>
+	</div>
 	<h:messages />
-	<h:panelGroup rendered="#{loginController.loggedIn}">
-		<div style="background-color: #{loginController.color};" class="box">
-			<div class="label">Hi #{loginController.username}</div>
-		</div>
-		
-		<h:form id="colorForm">
-			<h:commandButton id="red" value="Red" 
-				action="#{loginController.red}" />
-			<h:commandButton id="green" value="Green"
-				action="#{loginController.green}" />
-			<h:commandButton id="blue" value="Blue"
-				action="#{loginController.blue}" />
+	<h:panelGroup rendered="#{login.loggedIn}">
+
+		<h:form id="menu">
+			<h:selectOneRadio id="color" value="#{login.color}">
+				<f:selectItem itemValue="red" itemLabel="Red" />
+				<f:selectItem itemValue="green" itemLabel="Green" />
+				<f:selectItem itemValue="blue" itemLabel="Blue" />
+				<f:selectItem itemValue="grey" itemLabel="Default" />
+			</h:selectOneRadio>
+
+			<h:commandButton id="changeColor" value="Change Color">
+				<f:ajax execute="color" render="welcome" />
+			</h:commandButton>
+
+			<h:panelGroup id="welcome">
+				<div style="background-color: #{login.color};" class="box">
+					<div class="label">Hi #{login.username}</div>
+				</div>
+				<div>
+					Color changed at <span id="colorChangeTime">#{login.currentTime}</span>
+				</div>
+			</h:panelGroup>
 		</h:form>
 	</h:panelGroup>
 </body>

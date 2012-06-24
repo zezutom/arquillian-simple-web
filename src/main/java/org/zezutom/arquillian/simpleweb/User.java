@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+	public static final String DEFAULT_COLOR = "grey";
+	
 	private static final long serialVersionUID = 1L;
 
 	private String username;
 
-	private Color color = Color.GREY;
+	private String color = DEFAULT_COLOR;
 	
 	public User() {}
 	
@@ -24,12 +26,12 @@ public class User implements Serializable {
 		this.username = username;
 	}	
 	
-	public void setColor(Color color) {
+	public void setColor(String color) {
 		this.color = color;
 	}
 	
 	public String getColor() {		
-		return color.getValue();
+		return color;
 	}
 	
 	public boolean isAnonymous() {

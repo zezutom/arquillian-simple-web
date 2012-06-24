@@ -2,6 +2,7 @@ package org.zezutom.arquillian.simpleweb;
 
 import javax.enterprise.inject.Model;
 
+
 @Model
 public class Credentials {
 
